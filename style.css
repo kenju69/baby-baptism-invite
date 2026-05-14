@@ -340,3 +340,16 @@ iframe {
   flex-direction: column;
   gap: 12px;
 }
+
+.rsvp-disclaimer {
+  font-size: 14px;
+  color: var(--savanna); /* Matches your elegant theme color */
+  margin-bottom: 15px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.rsvp-disclaimer strong {
+  text-decoration: underline;
+  color: var(--earth);
+}

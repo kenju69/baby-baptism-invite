@@ -71,6 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
     noBtn.classList.add('active-btn');
     yesBtn.classList.remove('active-btn');
 
+    //window.location.href = "https://youtu.be/lWb5jqXNB4I?si=gwsLQYcAAb42hLCL";
+    window.open("https://youtu.be/lWb5jqXNB4I?si=gwsLQYcAAb42hLCL", "_blank");
+
   });
 
   // ======================
