@@ -3,42 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Baptism Invitation</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Madagascar Celebration Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;600&display=swap"
+        rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <div class="container">
 
     <div class="hero">
-        <img src="baby.jpg" alt="Baby Photo" class="baby-photo">
-    </div>
 
-    <div class="content">
+      <img src="baby.jpg" class="hero-image">
 
-        <p class="invite">YOU ARE INVITED</p>
+      <p class="subtitle">An Elegant Celebration Inspired by Madagascar</p>
 
-        <h1>Baby Enze's Baptism</h1>
+      <h1>Alex’s Special Day</h1>
 
-        <p class="details">
-            TBA <br>
-            TBA <br>
-            Shrine of St. Therese of the Child Jesus
-        </p>
-
-        <a class="btn" href="https://maps.google.com" target="_blank">
-            View Location
-        </a>
+      <p class="tagline">
+        A warm gathering of family, joy, and wild adventure spirit.
+      </p>
 
     </div>
+
+    <!-- DETAILS -->
+    <div class="card">
+
+      <h2>Event Details</h2>
+
+      <div class="info">
+        <p><span>Date</span> August 24, 2025</p>
+        <p><span>Time</span> 12:00 PM</p>
+        <p><span>Venue</span> Celebration Hall</p>
+      </div>
+
+    </div>
+
+    <!-- LOCATION -->
+ <div class="card">
+
+  <h2>Location</h2>
+
+  <div class="map-embed">
+
+   <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d291.3752302082084!2d121.0159536!3d14.5207026!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397cecb7c9ab2f7%3A0xfff853d770c371d7!2sMcDonald&#39;s!5e1!3m2!1sen!2sph!4v1778759092685!5m2!1sen!2sph" 
+           width="600" 
+           height="450" 
+           style="border:0;" 
+           allowfullscreen="" 
+           loading="lazy" 
+           referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+
+  </div>
+
+</a>
 
 </div>
+
+    <!-- RSVP -->
+    <div class="card">
+
+      <h2>RSVP</h2>
+
+      <div class="rsvp-options">
+        <button id="yesBtn">Attending</button>
+        <button id="noBtn">Not Attending</button>
+      </div>
+
+      <form id="rsvpForm">
+
+        <input type="text" id="name" placeholder="Full Name" required>
+
+        <select id="adults" required>
+          <option value="" disabled selected>Adults (Companions)</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+
+        <select id="kids" required>
+          <option value="" disabled selected>Kids (Companions)</option>
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+
+        <button type="submit" class="submit-btn">
+          Submit RSVP
+        </button>
+
+      </form>
+
+      <p id="declineText" class="hidden-text"></p>
+
+    </div>
+
+    <p class="footer">
+      With warmth and adventure spirit 🌿🐧
+    </p>
+
+  </div>
 
   <script src="script.js"></script>
 
