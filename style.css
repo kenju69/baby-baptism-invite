@@ -344,7 +344,8 @@ iframe {
 .rsvp-disclaimer {
   font-size: 14px;
   color: var(--savanna); /* Matches your elegant theme color */
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  border-radius: 12px;
   font-style: italic;
   font-weight: 500;
 }
