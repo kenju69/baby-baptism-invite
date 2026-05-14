@@ -1,132 +1,144 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz45G-JRgfPYE_T9O0XbWupi3JprtPXtO5MuYrBpPmi5_qfcoGtuvnywd9NO-f25jRxEA/exec";
+document.addEventListener("DOMContentLoaded", () => {
 
-const yesBtn = document.getElementById('yesBtn');
-const noBtn = document.getElementById('noBtn');
-const form = document.getElementById('rsvpForm');
-const declineText = document.getElementById('declineText');
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz45G-JRgfPYE_T9O0XbWupi3JprtPXtO5MuYrBpPmi5_qfcoGtuvnywd9NO-f25jRxEA/exec";
 
-let status = "YES";
-let submitted = false;
-let isSubmitting = false;
-let finalStatus = null;
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const form = document.getElementById('rsvpForm');
 
-// YES
-yesBtn.addEventListener('click', () => {
-  if (submitted) return;
+  const attendingFields = document.getElementById('attendingFields');
+  const notAttendingMsg = document.getElementById('notAttendingMsg');
 
-  status = "YES";
+  let status = "";
+  let submitted = false;
+  let isSubmitting = false;
+  let finalStatus = null;
 
-  form.style.display = "flex";
-  declineText.style.display = "none";
-
-  yesBtn.classList.add('active-btn');
-  noBtn.classList.remove('active-btn');
-});
-
-// NO
-noBtn.addEventListener('click', () => {
-  if (submitted) return;
-
-  status = "NO";
-
+  // INIT STATE
   form.style.display = "none";
-  declineText.style.display = "block";
+  attendingFields.style.display = "none";
+  notAttendingMsg.style.display = "none";
 
-  noBtn.classList.add('active-btn');
-  yesBtn.classList.remove('active-btn');
-});
-
-// SUBMIT
-form.addEventListener('submit', async (e) => {
-
-  e.preventDefault();
-
-  if (isSubmitting || finalStatus) return;
-
-  isSubmitting = true;
-
-  // disable buttons immediately
-  yesBtn.disabled = true;
-  noBtn.disabled = true;
-
-  yesBtn.style.opacity = "0.6";
-  noBtn.style.opacity = "0.6";
-
-  // show loading on button
   const submitBtn = form.querySelector(".submit-btn");
-  const originalText = submitBtn.innerHTML;
 
-  submitBtn.innerHTML = "Sending...";
-  submitBtn.style.cursor = "not-allowed";
-  submitBtn.style.opacity = "0.7";
+  // ======================
+  // RESET UI FUNCTION
+  // ======================
+  function resetView() {
+    attendingFields.style.display = "none";
+    notAttendingMsg.style.display = "none";
+    submitBtn.style.display = "block";
+  }
 
-  const formData = new URLSearchParams();
+  // ======================
+  // ATTENDING
+  // ======================
+  yesBtn.addEventListener('click', () => {
 
-  formData.append("name", document.getElementById('name').value);
-  formData.append("adults", document.getElementById('adults').value);
-  formData.append("kids", document.getElementById('kids').value);
-  formData.append("status", status);
+    if (submitted || isSubmitting || finalStatus) return;
 
-  try {
+    status = "YES";
 
-    await fetch(SCRIPT_URL, {
-      method: "POST",
-      body: formData
-    });
+    form.style.display = "flex";
 
-    finalStatus = status;
+    attendingFields.style.display = "flex";
+    notAttendingMsg.style.display = "none";
 
-    // restore button text (just in case)
-    submitBtn.innerHTML = originalText;
+    submitBtn.style.display = "block";
 
-    if (status === "YES") {
+    yesBtn.classList.add('active-btn');
+    noBtn.classList.remove('active-btn');
 
-      form.style.transition = "all 0.4s ease";
-      form.style.opacity = "0";
-      form.style.transform = "translateY(10px)";
+  });
 
-      setTimeout(() => {
-        form.innerHTML = `
-          <div class="thank-you">
-            <h3>Thank you 💛</h3>
-            <p>Your RSVP has been received.</p>
-          </div>
-        `;
+  // ======================
+  // NOT ATTENDING
+  // ======================
+  noBtn.addEventListener('click', () => {
 
-        form.style.opacity = "1";
-        form.style.transform = "translateY(0)";
-      }, 300);
+    if (submitted || isSubmitting || finalStatus) return;
 
-      yesBtn.classList.add('active-btn');
-      noBtn.classList.remove('active-btn');
+    status = "NO";
 
-    } else {
+    form.style.display = "flex";
 
-      declineText.innerText = "Thank you for letting us know.";
-      declineText.style.display = "block";
+    attendingFields.style.display = "none";
+    notAttendingMsg.style.display = "block";
 
-      noBtn.classList.add('active-btn');
-      yesBtn.classList.remove('active-btn');
+    // ❗ IMPORTANT: hide submit button
+    submitBtn.style.display = "none";
+
+    noBtn.classList.add('active-btn');
+    yesBtn.classList.remove('active-btn');
+
+  });
+
+  // ======================
+  // SUBMIT
+  // ======================
+  form.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+
+    if (isSubmitting || finalStatus) return;
+
+    isSubmitting = true;
+
+    // LOCK EVERYTHING (fix #1)
+    yesBtn.disabled = true;
+    noBtn.disabled = true;
+    yesBtn.style.pointerEvents = "none";
+    noBtn.style.pointerEvents = "none";
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<span class="spinner"></span> Sending...`;
+
+    const formData = new URLSearchParams();
+
+    formData.append("status", status);
+    formData.append("name", document.getElementById('name')?.value || "");
+    formData.append("adults", document.getElementById('adults')?.value || "");
+    formData.append("kids", document.getElementById('kids')?.value || "");
+
+    try {
+
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        body: formData
+      });
+
+      finalStatus = status;
+
+      // ======================
+      // SUCCESS UI (FIX #4)
+      // ======================
+      form.innerHTML = `
+        <div class="thank-you">
+          <h3>YES! Thank you 💛</h3>
+          <p>Your RSVP has been recorded successfully.</p>
+        </div>
+      `;
+
+      // remove buttons completely
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+
+    } catch (err) {
+
+      console.error(err);
+      alert("Network error. Please try again.");
+
+      isSubmitting = false;
+
+      yesBtn.disabled = false;
+      noBtn.disabled = false;
+      yesBtn.style.pointerEvents = "auto";
+      noBtn.style.pointerEvents = "auto";
+
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = "Submit RSVP";
     }
 
-  } catch (err) {
-
-    console.error(err);
-
-    alert("Network error. Please try again.");
-
-    // restore everything if failed
-    isSubmitting = false;
-
-    yesBtn.disabled = false;
-    noBtn.disabled = false;
-
-    yesBtn.style.opacity = "1";
-    noBtn.style.opacity = "1";
-
-    submitBtn.innerHTML = originalText;
-    submitBtn.style.cursor = "pointer";
-    submitBtn.style.opacity = "1";
-  }
+  });
 
 });

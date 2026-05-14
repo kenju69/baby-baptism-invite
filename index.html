@@ -13,22 +13,24 @@
 </head>
 
 <body>
+  
 
   <div class="container">
 
     <div class="hero">
+  <div class="image-frame">
+    <img src="baby.png" class="hero-image" alt="Enze">
+  </div>
+  
+<p class="subtitle">Adventure awaits our little explorer!</p>
 
-      <img src="baby.jpg" class="hero-image">
-
-      <p class="subtitle">An Elegant Celebration Inspired by Madagascar</p>
-
-      <h1>Alex’s Special Day</h1>
-
-      <p class="tagline">
-        A warm gathering of family, joy, and wild adventure spirit.
-      </p>
-
-    </div>
+  <p class="subtitle">Celebrating the Baptism of </p>
+  <h1>Enriel Zephan</h1>
+  
+  <p class="tagline">
+    Join us as we celebrate a day of family, joy, <br>and a wild adventure spirit.
+  </p>
+</div>
 
     <!-- DETAILS -->
     <div class="card">
@@ -36,9 +38,9 @@
       <h2>Event Details</h2>
 
       <div class="info">
-        <p><span>Date</span> August 24, 2025</p>
-        <p><span>Time</span> 12:00 PM</p>
-        <p><span>Venue</span> Celebration Hall</p>
+        <p><span>Date</span> June 20, 2026</p>
+        <p><span>Time</span> 10:00 AM</p>
+        <p><span>Venue</span> McDonald's 2 Portwood St. Pasay City</p>
       </div>
 
     </div>
@@ -65,43 +67,77 @@
 
 </div>
 
+<!-- GIFTS -->
+ <div class="card">
+
+  <h2>Gift Guide</h2>
+
+  <p class="gift-intro">
+    Your presence is the greatest gift 🎉  
+    But if you wish to bless the celebration, here are some ideas:
+  </p>
+
+  <div class="gift-list">
+
+    <p>🎁 Cash gift (for future savings & baby needs)</p>
+
+    <p>🧸 Toys (age-appropriate & educational)</p>
+
+    <p>👕 Clothes (1–2 years old)</p>
+
+    <p>💛 Or anything from the heart</p>
+
+  </div>
+
+</div>
+
     <!-- RSVP -->
-    <div class="card">
+   <div class="card">
 
-      <h2>RSVP</h2>
+  <h2>RSVP</h2>
 
-      <div class="rsvp-options">
-        <button id="yesBtn">Attending</button>
-        <button id="noBtn">Not Attending</button>
-      </div>
+  <p class="rsvp-subtext">
+  A little adventure awaits. 
+  Will you join us in celebrating this joyful moment?
+</p>
 
-      <form id="rsvpForm">
+  <div class="rsvp-options">
+    <button type="button" id="yesBtn">YES</button>
+    <button type="button" id="noBtn">NO</button>
+  </div>
 
-        <input type="text" id="name" placeholder="Full Name" required>
+  <form id="rsvpForm">
 
-        <select id="adults" required>
-          <option value="" disabled selected>Adults (Companions)</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-        </select>
+    <div id="attendingFields">
 
-        <select id="kids" required>
-          <option value="" disabled selected>Kids (Companions)</option>
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-        </select>
+      <input type="text" id="name" placeholder="Full Name" required>
 
-        <button type="submit" class="submit-btn">
-          Submit RSVP
-        </button>
+      <select id="adults">
+        <option value="" disabled selected>Adults (Companions)</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
 
-      </form>
-
-      <p id="declineText" class="hidden-text"></p>
+      <select id="kids">
+        <option value="" disabled selected>Kids (Companions)</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
 
     </div>
+
+    <!-- FIXED NAME MATCH -->
+    <p id="notAttendingMsg" class="hidden-text">
+     N0 - We’re sorry you can’t make it 💛
+    </p>
+
+    <button type="submit" class="submit-btn">Submit RSVP</button>
+
+  </form>
+
+</div>
 
     <p class="footer">
       With warmth and adventure spirit 🌿🐧

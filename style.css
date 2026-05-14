@@ -4,6 +4,9 @@
   --jungle: #3E4A2D;
   --earth: #2F2A24;
   --gold: #C6A76B;
+  --cream: #F6F1E6; 
+  --earth: #2F2A24;
+  --gold: #FFBC0D;        
   --cream: #F6F1E6;
 }
 
@@ -44,16 +47,60 @@ body {
 }
 
 /* HERO */
-.hero-image {
-  width: 150px;
-  height: 150px;
+/* CINEMATIC IMAGE FRAMING */
+.image-frame {
+  display: inline-block;
+  padding: 8px;
   border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), #fdf5e6);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hero-image {
+  width: 180px;
+  height: 180px;
   object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid var(--gold); /* Golden Yellow Frame */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
 
-  border: 3px solid #b7a77d;
+.image-frame:hover {
+  transform: scale(1.05) rotate(2deg); /* Subtle playful animation */
+}
 
+/* TYPOGRAPHY ADJUSTMENTS */
+h1 {
+  font-family: 'Montserrat', sans-serif; /* High-energy font */
+  font-weight: 900;
+  color: var(--savanna); /* Bold McDonald's Red */
+  text-transform: uppercase;
+  font-size: 32px;
+  margin-top: 10px;
+}
+
+.subtitle {
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: var(--savanna);
+  text-transform: uppercase;
+  font-weight: 600;
   margin-bottom: 15px;
 }
+
+/* ADDING A "JUNGLE" TEXTURE TO CARDS */
+.card {
+  background: rgba(255, 255, 255, 0.85); /* Slightly more opaque for readability */
+  backdrop-filter: blur(5px); /* Modern frosted glass effect */
+  border: 1px solid rgba(62, 74, 45, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+
 
 .subtitle {
   font-size: 12px;
@@ -159,6 +206,14 @@ h2::before {
   background: var(--sand);
 }
 
+.rsvp-subtext {
+  font-size: 14px;
+  color: #7a6d5a;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
 .active-btn {
   background: var(--savanna) !important;
   color: white;
@@ -250,9 +305,38 @@ iframe {
   border: 1px solid rgba(176,138,90,0.3);
 }
 
-.hero-image {
+/*.hero-image {
   border-radius: 50%;
   border: 3px solid var(--gold);
 
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}*/
+
+.gift-intro {
+  font-size: 14px;
+  color: var(--earth);
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.gift-list p {
+  padding: 10px 12px;
+  margin: 8px 0;
+
+  background: rgba(198,167,107,0.08);
+  border-left: 3px solid var(--gold);
+
+  border-radius: 8px;
+
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+#attendingFields {
+  display: none; /* hidden by default */
+  flex-direction: column;
+  gap: 12px;
 }
