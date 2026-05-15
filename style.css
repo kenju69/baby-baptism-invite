@@ -354,3 +354,67 @@ iframe {
   text-decoration: underline;
   color: var(--earth);
 }
+
+.special-card {
+  background:
+    linear-gradient(
+      rgba(255,255,255,0.88),
+      rgba(255,255,255,0.82)
+    );
+
+  border: 1px solid rgba(198,167,107,0.35);
+}
+
+.special-message {
+
+  font-size: 15px;
+  line-height: 1.9;
+
+  color: #5f5648;
+
+  margin-top: 10px;
+}
+
+.dress-intro {
+
+  font-size: 14px;
+  line-height: 1.8;
+
+  color: #5f5648;
+
+  margin-bottom: 20px;
+}
+
+.dress-grid {
+
+  display: grid;
+  grid-template-columns: 1fr;
+
+  gap: 12px;
+}
+
+.dress-item {
+
+  background: rgba(198,167,107,0.08);
+
+  border: 1px solid rgba(198,167,107,0.2);
+
+  border-radius: 14px;
+
+  padding: 16px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  text-align: left;
+}
+
+.dress-item span {
+  font-size: 24px;
+}
+
+.dress-item strong {
+  color: var(--jungle);
+}
